@@ -11,7 +11,7 @@ else
 fi
 
 if [ $(python -c 'import bullet'; echo $?) = 1 ]; then
-		echo "Python Module ''bullet' not found"
+		echo "Python Module 'bullet' not found"
 else
 		echo "Python Module Requirements Met."
 fi
