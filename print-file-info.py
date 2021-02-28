@@ -1,4 +1,4 @@
-import sys, subprocess
+import sys, subprocess, json
 
 show_usage = (
         f'{sys.argv[0]}'
@@ -16,4 +16,11 @@ if (len(sys.argv) != 2):
 
 info = subprocess.run(["ffprobe","-v","quiet","-print_format","json","-show_format","-show_streams",sys.argv[1]],
         stdout=subprocess.PIPE)
+
+if (info.returncode != 0):
+    print("It appears ffprobe has ran into an error. The output is given below. This might have occured because you wrote the wrong file path.")
+    print(info.stdout)
+    exit()
+
+info = json.loads(info.stdout)
 
