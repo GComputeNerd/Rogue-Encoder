@@ -1,4 +1,5 @@
 import sys, subprocess, json
+import bullet
 
 show_usage = (
         f'{sys.argv[0]}'
@@ -23,4 +24,19 @@ if (info.returncode != 0):
     exit()
 
 info = json.loads(info.stdout)
+det = info['format']
+streams = info['streams']
+print("\nInfo Retrieved")
+print("-"*14)
+print(
+        f"Filename = {det['filename']}"
+        f"\nNum. of Streams = {det['nb_streams']}"
+        f"\nFormat = {det['format_long_name']}"
+        f"\nDuration = {float(det['duration'])/60} mins\n"
+        )
 
+check = bullet.YesNo("Continue?").launch()
+
+if (not check):
+    print("Thank You For Opening This Program !")
+    exit()
