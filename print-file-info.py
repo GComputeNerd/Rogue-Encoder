@@ -57,12 +57,16 @@ aInfo = lambda streams, i : print(
 
 sInfo = lambda streams, i : print(
         f"Codec Type = subtitle\n"
-        f"TODO \n"
+        f"Codec Name = {streams[i]['codec_name']}\n"
+        f"Codec Long Name = {streams[i]['codec_long_name']}\n"
+        f"Duration = {float(streams[i]['duration'])/60} mins\n"
 )
 
+nl = "\n" # fstrings can't use backslashes T_T
 atInfo = lambda streams, i : print(
         f"Codec Type = attachment\n"
-        f"TODO \n"
+        f"Tags :-\n"
+        f"{nl.join([f'''{n} = {streams[i]['tags'][n]}''' for n in streams[i]['tags'].keys()])}"
 )
 
 index = {
