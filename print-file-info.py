@@ -1,4 +1,5 @@
 import sys, subprocess, json
+from os import system
 import bullet
 
 show_usage = (
@@ -26,6 +27,19 @@ if (info.returncode != 0):
 info = json.loads(info.stdout)
 det = info['format']
 streams = info['streams']
+index = {
+        'video': [i for i in range(len(streams)) 
+            if (streams[i]['codec_type']) == 'video'],
+        'audio': [i for i in range(len(streams))
+            if (streams[i]['codec_type']) == 'audio'],
+        'subtitle': [i for i in range(len(streams))
+            if (streams[i]['codec_type']) == 'subtitle'],
+        'attachment': [i for i in range(len(streams))
+            if (streams[i]['codec_type']) == 'attachment']
+        }
+
+del info
+
 print("\nInfo Retrieved")
 print("-"*14)
 print(
@@ -40,3 +54,6 @@ check = bullet.YesNo("Continue?").launch()
 if (not check):
     print("Thank You For Opening This Program !")
     exit()
+
+system('clear')
+print("Lezz GO")
