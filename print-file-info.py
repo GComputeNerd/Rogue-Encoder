@@ -75,13 +75,40 @@ cli_main = bullet.Bullet(
         )
 
 while (stay):
+    system('clear')
     print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
     choice = cli_main.launch()
 
     if (choice == 'File Info'):
-        pass
+        system('clear')
+        print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
+        print("\nCurrent Location : File Info\n")
+        print(
+            f"Filename = {det['filename']}"
+            f"\nNum. of Streams = {det['nb_streams']}"
+            f"\nFormat = {det['format_long_name']}"
+            f"\nDuration = {float(det['duration'])/60} mins\n"
+        )
+        bullet.Bullet(
+                choices = ['Back']
+                ).launch()
+
     elif (choice == 'Streams'):
-        pass
+        while True:
+            system('clear')
+            print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
+            print("\nCurrent Location : Streams\n")
+
+            choice = bullet.Bullet(
+                    prompt = "Select Stream Number",
+                    choices = [f"[{i}] type = {streams[i]['codec_type']}" for i in range(len(streams))] + ['Back']
+                    ).launch()
+
+            if not (choice == 'Back'):
+                pass
+            else:
+                break
+
     elif (choice == 'Video'):
         pass
     elif (choice == 'Audio'):
@@ -89,7 +116,7 @@ while (stay):
     elif (choice == 'Attachments'):
         pass
     elif (choice == 'Quit'):
-        pass
-
-    exit()
+        system('clear')
+        print("Thank You for Using This Program!")
+        exit()
 
