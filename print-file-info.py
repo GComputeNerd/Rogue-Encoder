@@ -233,9 +233,67 @@ while (stay):
                     ).launch()
 
     elif (choice == 'Subtitles'):
-        pass
+        while True:
+            system('clear')
+            print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
+            print("\nCurrent Location : Subtitles\n")
+
+            if (len(index['subtitle']) == 0):
+                print("No Subtitle Streams Found")
+                bullet.Bullet(
+                        choices=['Back']
+                        ).launch()
+                break
+
+            choice = bullet.Bullet(
+                    prompt = "Streams :-",
+                    choices = [str(s) for s in index['subtitle']] + ['Back']
+                    ).launch()
+
+            if (choice == 'Back'):
+                break
+            
+            system('clear')
+            print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
+            print(f"\nCurrent Location : Subtitles [Stream [{choice}]]\n")
+
+            sInfo(streams, int(choice))
+
+            bullet.Bullet(
+                    choices = ["Back"]
+                    ).launch()
+
     elif (choice == 'Attachments'):
-        pass
+        while True:
+            system('clear')
+            print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
+            print("\nCurrent Location : Attachments\n")
+
+            if (len(index['attachment']) == 0):
+                print("No Attachment Streams Found")
+                bullet.Bullet(
+                        choices=['Back']
+                        ).launch()
+                break
+
+            choice = bullet.Bullet(
+                    prompt = "Streams :-",
+                    choices = [str(s) for s in index['attachment']] + ['Back']
+                    ).launch()
+
+            if (choice == 'Back'):
+                break
+            
+            system('clear')
+            print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
+            print(f"\nCurrent Location : Attachment [Stream [{choice}]]\n")
+
+            atInfo(streams, int(choice))
+
+            bullet.Bullet(
+                    choices = ["Back"]
+                    ).launch()
+
     elif (choice == 'Quit'):
         system('clear')
         print("Thank You for Using This Program!")
