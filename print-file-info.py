@@ -66,4 +66,30 @@ if (not check):
     exit()
 
 system('clear')
-print("Lezz GO")
+stay = True
+
+# Main Prompt
+cli_main = bullet.Bullet(
+        prompt = "\nCurrent Location : Home\n\nOptions :-",
+        choices = ['File Info', 'Streams', 'Video', 'Audio', 'Subtitles', 'Attachments', 'Quit']
+        )
+
+while (stay):
+    print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
+    choice = cli_main.launch()
+
+    if (choice == 'File Info'):
+        pass
+    elif (choice == 'Streams'):
+        pass
+    elif (choice == 'Video'):
+        pass
+    elif (choice == 'Audio'):
+        pass
+    elif (choice == 'Attachments'):
+        pass
+    elif (choice == 'Quit'):
+        pass
+
+    exit()
+
