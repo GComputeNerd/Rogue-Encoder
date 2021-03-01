@@ -1,6 +1,7 @@
 import sys, subprocess, json
 from os import system
 import bullet
+import re
 
 show_usage = (
         f'{sys.argv[0]}'
@@ -29,6 +30,18 @@ det = info['format']
 streams = info['streams']
 
 del info
+
+vInfo = lambda streams, i : print(
+        f"Codec Type = video\n"
+        f"Codec Name = {streams[i]['codec_name']}\n"
+        f"Codec Long Name = {streams[i]['codec_long_name']}\n"
+        f"Profile = {streams[i]['profile']}\n"
+        f"Width = {streams[i]['width']}\n"
+        f"Height = {streams[i]['height']}\n"
+        f"Aspect Ratio = {streams[i]['display_aspect_ratio']}\n"
+        f"Average Frame Rate = { int(streams[i]['avg_frame_rate'].split('/')[0]) / int(streams[i]['avg_frame_rate'].split('/')[1])}\n"
+        f"Pixel Format = {streams[i]['pix_fmt']}\n"
+) # The weird {} calculates average frame rate
 
 index = {
         'video': [],
@@ -99,15 +112,38 @@ while (stay):
             print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
             print("\nCurrent Location : Streams\n")
 
+            # Choice
             choice = bullet.Bullet(
                     prompt = "Select Stream Number",
                     choices = [f"[{i}] type = {streams[i]['codec_type']}" for i in range(len(streams))] + ['Back']
                     ).launch()
 
-            if not (choice == 'Back'):
-                pass
-            else:
+            if (choice == 'Back'):
                 break
+            else:
+                i = int(re.search(r"[(\d)]", choice).group()) # Selected stream index
+                codecType = streams[i]['codec_type']
+
+                system('clear')
+                print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
+                print(f"\nCurrent Location : Stream [{i}]\n")
+
+                print("Stream Info :-")
+
+                # Print Stream information acc. to Codec Type
+                if (codecType == 'video'):
+                    vInfo(streams, i)
+                elif (codecType == 'audio'):
+                    pass
+                elif (codecType == 'subtitle'):
+                    pass
+                elif (codecType == 'attachment'):
+                    pass
+
+                bullet.Bullet(
+                        choices = ["Back"]
+                        ).launch()
+
 
     elif (choice == 'Video'):
         pass
@@ -119,4 +155,3 @@ while (stay):
         system('clear')
         print("Thank You for Using This Program!")
         exit()
-
