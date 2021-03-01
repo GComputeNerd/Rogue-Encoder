@@ -47,7 +47,12 @@ vInfo = lambda streams, i : print(
 
 aInfo = lambda streams, i : print(
         f"Codec Type = audio\n"
-        f"TODO\n"
+        f"Codec Name = {streams[i]['codec_name']}\n"
+        f"Codec Long Name = {streams[i]['codec_long_name']}\n"
+        f"Sample Format = {streams[i]['sample_fmt']}\n"
+        f"Sample Rate = {streams[i]['sample_rate']}\n"
+        f"Channels = {streams[i]['channels']}\n"
+        f"Channel Layout = {streams[i]['channel_layout']}\n"
 )
 
 sInfo = lambda streams, i : print(
