@@ -27,18 +27,28 @@ if (info.returncode != 0):
 info = json.loads(info.stdout)
 det = info['format']
 streams = info['streams']
-index = {
-        'video': [i for i in range(len(streams)) 
-            if (streams[i]['codec_type']) == 'video'],
-        'audio': [i for i in range(len(streams))
-            if (streams[i]['codec_type']) == 'audio'],
-        'subtitle': [i for i in range(len(streams))
-            if (streams[i]['codec_type']) == 'subtitle'],
-        'attachment': [i for i in range(len(streams))
-            if (streams[i]['codec_type']) == 'attachment']
-        }
 
 del info
+
+index = {
+        'video': [],
+        'audio': [],
+        'subtitle': [],
+        'attachment': []
+        }
+
+for i in range(len(streams)):
+    
+    codecType = streams[i]['codec_type']
+
+    if (codecType == 'video'):
+        index['video'] += [i]
+    elif (codecType == 'audio'):
+        index['audio'] += [i]
+    elif (codecType == 'subtitle'):
+        index['subtitle'] += [i]
+    elif (codecType == 'attachment'):
+        index['attachment'] += [i]
 
 print("\nInfo Retrieved")
 print("-"*14)
