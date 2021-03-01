@@ -171,8 +171,68 @@ while (stay):
                         ).launch()
 
     elif (choice == 'Video'):
-        pass
+        while True:
+            system('clear')
+            print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
+            print("\nCurrent Location : Video\n")
+
+            if (len(index['video']) == 0):
+                print("No Video Streams Found")
+                bullet.Bullet(
+                        choices=['Back']
+                        ).launch()
+                break
+
+            choice = bullet.Bullet(
+                    prompt = "Streams :-",
+                    choices = [str(s) for s in index['video']] + ['Back']
+                    ).launch()
+
+            if (choice == 'Back'):
+                break
+            
+            system('clear')
+            print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
+            print(f"\nCurrent Location : Video [Stream [{choice}]]\n")
+
+            vInfo(streams, int(choice))
+
+            bullet.Bullet(
+                    choices = ["Back"]
+                    ).launch()
+
     elif (choice == 'Audio'):
+        while True:
+            system('clear')
+            print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
+            print("\nCurrent Location : Audio\n")
+
+            if (len(index['audio']) == 0):
+                print("No Audio Streams Found")
+                bullet.Bullet(
+                        choices=['Back']
+                        ).launch()
+                break
+
+            choice = bullet.Bullet(
+                    prompt = "Streams :-",
+                    choices = [str(s) for s in index['audio']] + ['Back']
+                    ).launch()
+
+            if (choice == 'Back'):
+                break
+            
+            system('clear')
+            print(sys.argv[0], "-"*len(sys.argv[0]), sep="\n")
+            print(f"\nCurrent Location : Audio [Stream [{choice}]]\n")
+
+            aInfo(streams, int(choice))
+
+            bullet.Bullet(
+                    choices = ["Back"]
+                    ).launch()
+
+    elif (choice == 'Subtitles'):
         pass
     elif (choice == 'Attachments'):
         pass
