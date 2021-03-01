@@ -31,6 +31,8 @@ streams = info['streams']
 
 del info
 
+# Stream Info
+
 vInfo = lambda streams, i : print(
         f"Codec Type = video\n"
         f"Codec Name = {streams[i]['codec_name']}\n"
@@ -42,6 +44,21 @@ vInfo = lambda streams, i : print(
         f"Average Frame Rate = { int(streams[i]['avg_frame_rate'].split('/')[0]) / int(streams[i]['avg_frame_rate'].split('/')[1])}\n"
         f"Pixel Format = {streams[i]['pix_fmt']}\n"
 ) # The weird {} calculates average frame rate
+
+aInfo = lambda streams, i : print(
+        f"Codec Type = audio\n"
+        f"TODO\n"
+)
+
+sInfo = lambda streams, i : print(
+        f"Codec Type = subtitle\n"
+        f"TODO \n"
+)
+
+atInfo = lambda streams, i : print(
+        f"Codec Type = attachment\n"
+        f"TODO \n"
+)
 
 index = {
         'video': [],
@@ -134,16 +151,15 @@ while (stay):
                 if (codecType == 'video'):
                     vInfo(streams, i)
                 elif (codecType == 'audio'):
-                    pass
+                    aInfo(streams, i)
                 elif (codecType == 'subtitle'):
-                    pass
+                    sInfo(streams, i)
                 elif (codecType == 'attachment'):
-                    pass
+                    atInfo(streams, i)
 
                 bullet.Bullet(
                         choices = ["Back"]
                         ).launch()
-
 
     elif (choice == 'Video'):
         pass
